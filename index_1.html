@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holiday Publications — Puzzle Apps &amp; Books</title>
+<meta name="description" content="Holiday Publications makes puzzle games, mystery apps and puzzle books — Detective Hutch: Cryptograms, Plan My Travel, Numastra, the All-in-One Recipes Cookbook, and puzzle books on Amazon.">
+<link rel="canonical" href="https://publicationsholiday-design.github.io/holiday-publications/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Holiday Publications — Puzzle Apps &amp; Books">
+<meta property="og:description" content="Detective mysteries, travel plans, recipes, daily readings and puzzle books — all from one small studio.">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Courier+Prime:wght@400;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0E0B14; --paper:#EDE4D3; --paper-deep:#DCD0B8;
+    --gold:#C9A24D; --oxblood:#8E2A2A; --ink-text:#1A1614;
+    --display:'Zilla Slab',Georgia,serif;
+    --mono:'Courier Prime','Courier New',monospace;
+    --body:'Poppins',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    background:var(--ink);
+    background-image:
+      radial-gradient(ellipse 80% 45% at 50% -8%, rgba(201,162,77,.11), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 108%, rgba(142,42,42,.06), transparent 70%);
+    background-attachment:fixed;
+    color:var(--paper); font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(1.25rem,4vw,2.5rem) clamp(1rem,5vw,2rem) 3rem;
+  }
+  .sheet{max-width:980px;margin:0 auto}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+
+  /* ---------- masthead ---------- */
+  .eyebrow{
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.32em;
+    color:var(--gold);text-transform:uppercase;text-align:center;padding:1.4rem 0 .2rem;
+  }
+  .brand{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(2rem,7.5vw,4rem);line-height:1.04;text-align:center;
+    color:var(--paper);letter-spacing:.02em;padding:.4rem 0 .1rem;word-break:break-word;
+  }
+  .brand .ch{display:inline-block;transition:color .18s ease}
+  .brand .ch.scrambling{color:var(--gold)}
+  .brand .sp{display:inline-block;width:.3em}
+  .decode-note{
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+    text-align:center;color:rgba(237,228,211,.36);min-height:1.1em;transition:opacity .5s ease;
+  }
+  .decode-note.done{opacity:0}
+  .standfirst{
+    text-align:center;max-width:35rem;margin:1.25rem auto 0;
+    font-size:1rem;line-height:1.65;color:rgba(237,228,211,.74);
+  }
+
+  /* ---------- section heads ---------- */
+  .sec{margin-top:clamp(2.75rem,7vw,4.25rem)}
+  .sec-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:1.4rem}
+  .sec-num{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--gold)}
+  .sec-title{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,4vw,1.95rem);line-height:1.15}
+  .sec-line{flex:1 1 auto;height:1px;background:rgba(201,162,77,.28)}
+
+  /* ---------- app grid ---------- */
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.05rem}
+
+  .app{
+    position:relative;display:flex;flex-direction:column;
+    background:rgba(237,228,211,.045);
+    border:1px solid rgba(201,162,77,.2);border-radius:4px;
+    padding:1.5rem 1.4rem 1.35rem;text-decoration:none;
+    transition:transform .2s ease,border-color .2s ease,background .2s ease;
+  }
+  .app:hover,.app:focus-visible{
+    transform:translateY(-4px);border-color:rgba(201,162,77,.6);
+    background:rgba(201,162,77,.07);outline:none;
+  }
+  .app:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .app.flagship{
+    grid-column:1 / -1;
+    background:
+      linear-gradient(120deg, rgba(201,162,77,.12), transparent 55%),
+      rgba(237,228,211,.05);
+    border-color:rgba(201,162,77,.4);
+  }
+  .app-kicker{
+    font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;
+  }
+  .app h3{font-family:var(--display);font-weight:700;font-size:1.32rem;line-height:1.2;margin-bottom:.45rem}
+  .app.flagship h3{font-size:clamp(1.5rem,4vw,2rem)}
+  .app p{font-size:.9rem;line-height:1.6;color:rgba(237,228,211,.68);flex:1 1 auto;margin-bottom:1.1rem}
+  .app.flagship p{max-width:42rem}
+
+  .plat{
+    display:flex;flex-wrap:wrap;gap:.55rem;
+    font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  }
+  .plat span{
+    display:inline-flex;align-items:center;gap:.4rem;
+    color:var(--ink-text);background:var(--gold);
+    border-radius:3px;padding:.5rem .85rem;
+    transition:background .18s ease,transform .18s ease;
+  }
+  .plat span.alt{background:transparent;color:var(--paper);border:1px solid rgba(201,162,77,.5)}
+  .app:hover .plat span:not(.alt){background:var(--paper)}
+  .plat .arr{transition:transform .18s ease}
+  .app:hover .plat .arr{transform:translateX(3px)}
+
+  .single-action{
+    font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--gold);display:inline-flex;align-items:center;gap:.45rem;
+    border-top:1px solid rgba(201,162,77,.22);padding-top:.85rem;margin-top:auto;
+  }
+  .single-action .arr{transition:transform .2s ease}
+  .app:hover .single-action .arr{transform:translateX(4px)}
+
+  /* ---------- books: two paper shelves ---------- */
+  .shelves{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem}
+  .shelf{
+    position:relative;display:flex;flex-direction:column;
+    background:var(--paper);
+    background-image:linear-gradient(160deg,rgba(255,255,255,.5),transparent 45%);
+    color:var(--ink-text);border-radius:2px;overflow:hidden;text-decoration:none;
+    padding:1.6rem 1.4rem 1.35rem;
+    box-shadow:0 12px 26px rgba(0,0,0,.5),0 2px 0 var(--paper-deep);
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s ease;
+  }
+  .shelf:nth-child(odd){transform:rotate(-.4deg)}
+  .shelf:nth-child(even){transform:rotate(.3deg)}
+  .shelf:hover,.shelf:focus-visible{
+    transform:rotate(0) translateY(-5px);
+    box-shadow:0 22px 42px rgba(0,0,0,.6),0 2px 0 var(--paper-deep);outline:none;
+  }
+  .shelf:focus-visible{box-shadow:0 0 0 3px var(--gold),0 22px 42px rgba(0,0,0,.6)}
+  .shelf::after{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+    background:linear-gradient(90deg,rgba(0,0,0,.1),transparent 30%,rgba(0,0,0,.08))}
+  .shelf-head{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.9rem}
+  .shelf-by{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,20,.5)}
+  .stamp{
+    font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--oxblood);border:1.5px solid var(--oxblood);border-radius:2px;
+    padding:.24rem .45rem;transform:rotate(-3deg);opacity:.78;white-space:nowrap;
+  }
+  .shelf h3{font-family:var(--display);font-weight:700;font-size:1.3rem;line-height:1.2;margin-bottom:.5rem}
+  .shelf p{font-size:.88rem;line-height:1.6;color:rgba(26,22,20,.72);flex:1 1 auto;margin-bottom:1.1rem}
+  .shelf-action{
+    font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-text);display:inline-flex;align-items:center;gap:.45rem;
+    border-top:1px solid rgba(26,22,20,.16);padding-top:.8rem;
+  }
+  .shelf-action .arr{transition:transform .22s ease}
+  .shelf:hover .shelf-action .arr{transform:translateX(4px)}
+
+  .bridge{
+    text-align:center;max-width:38rem;margin:1.6rem auto 0;
+    font-family:var(--mono);font-size:.8rem;line-height:1.7;
+    color:rgba(237,228,211,.5);
+  }
+  .bridge b{color:var(--gold);font-weight:700}
+
+  /* ---------- footer ---------- */
+  .signoff{margin-top:clamp(3rem,7vw,4.5rem);padding-top:1.4rem;text-align:center}
+  .signoff p{font-family:var(--mono);font-size:.72rem;letter-spacing:.09em;color:rgba(237,228,211,.34);line-height:1.95}
+  .signoff a{color:rgba(237,228,211,.55);text-decoration:none;border-bottom:1px solid rgba(201,162,77,.35)}
+  .signoff a:hover{color:var(--gold)}
+
+  @media (prefers-reduced-motion:reduce){
+    .app,.app:hover,.shelf,.shelf:nth-child(odd),.shelf:nth-child(even),.shelf:hover,.plat span{transform:none;transition:none}
+    .brand .ch,.decode-note{transition:none}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="eyebrow">An independent studio</p>
+
+    <!-- SIGNATURE: the studio name decodes itself -->
+    <h1 class="brand" id="cipher" data-word="HOLIDAY PUBLICATIONS">HOLIDAY PUBLICATIONS</h1>
+    <p class="decode-note" id="note" aria-hidden="true">Decrypting…</p>
+
+    <p class="standfirst">
+      Puzzle games, mystery apps and puzzle books — a detective who speaks in code,
+      trips planned to the hour, recipes worth repeating, and a few hundred puzzles
+      in print. All from one small desk.
+    </p>
+    <div class="rule" aria-hidden="true" style="margin-top:2rem"></div>
+  </header>
+
+  <!-- ========== APPS ========== -->
+  <section class="sec" aria-labelledby="s-apps">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title" id="s-apps">The apps</h2>
+      <span class="sec-line" aria-hidden="true"></span>
+    </div>
+
+    <div class="apps">
+
+      <!-- flagship -->
+      <a class="app flagship" href="https://publicationsholiday-design.github.io/detective-hutch-site/">
+        <span class="app-kicker">Flagship · iPhone &amp; Android</span>
+        <h3>Detective Hutch: Cryptograms</h3>
+        <p>
+          Every clue is written in code. Crack the cipher to read the next line of a
+          murder case and work your way to the killer — over a thousand puzzles, with
+          crosswords and word searches hidden along the way.
+        </p>
+        <div class="plat">
+          <span>iPhone <span class="arr" aria-hidden="true">→</span></span>
+          <span class="alt">Android <span class="arr" aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="app" href="https://publicationsholiday-design.github.io/Planmytravel-site/index.html">
+        <span class="app-kicker">Travel</span>
+        <h3>Plan My Travel</h3>
+        <p>Day-by-day itineraries for 150+ cities — what to see, where to stay and how to get around, costed for every budget.</p>
+        <span class="single-action">Plan a trip <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="app" href="https://publicationsholiday-design.github.io/cookbook-site/">
+        <span class="app-kicker">Recipes</span>
+        <h3>All-in-One Recipes Cookbook</h3>
+        <p>700+ recipes by category, from instant pot to party snacks — cook hands-free with audio steps and build a grocery list as you go.</p>
+        <span class="single-action">Find a recipe <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="app" href="https://publicationsholiday-design.github.io/numastra-site/">
+        <span class="app-kicker">Daily reading</span>
+        <h3>Numastra</h3>
+        <p>Real planetary positions paired with your own Life Path number, for a daily reading written for you rather than for your star sign.</p>
+        <span class="single-action">Read today <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ========== BOOKS ========== -->
+  <section class="sec" aria-labelledby="s-books">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title" id="s-books">The books, on Amazon</h2>
+      <span class="sec-line" aria-hidden="true"></span>
+    </div>
+
+    <div class="shelves">
+
+      <a class="shelf" href="https://www.amazon.com/stores/author/B0F28R1F5G/allbooks">
+        <div class="shelf-head">
+          <span class="shelf-by">Holiday Publications</span>
+          <span class="stamp">Mystery</span>
+        </div>
+        <h3>Detective Hutch, in print</h3>
+        <p>
+          The same cases as the app, on paper. <em>The Castle's Shadow</em>,
+          <em>Downtown Killer Case</em> and more — rhymed riddles, ciphers and bonus
+          word searches you solve with a pencil.
+        </p>
+        <span class="shelf-action">See the mysteries <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="shelf" href="https://www.amazon.com/stores/JIMMY-S/author/B0DSVRCYC9">
+        <div class="shelf-head">
+          <span class="shelf-by">Jimmy S</span>
+          <span class="stamp">Puzzles</span>
+        </div>
+        <h3>Puzzle &amp; activity books</h3>
+        <p>
+          Word search, sudoku, crosswords and activity books for adults and kids —
+          including the 10-book <em>Word Search Adventures</em> series. Fifty-plus
+          puzzles a book.
+        </p>
+        <span class="shelf-action">Browse the shelf <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+
+    </div>
+
+    <p class="bridge">
+      Enjoy the word searches in the app? <b>The books have hundreds more.</b><br>
+      Loved a book? <b>The cases come alive in Detective Hutch.</b>
+    </p>
+  </section>
+
+  <footer class="signoff">
+    <div class="rule" aria-hidden="true"></div>
+    <p>
+      Holiday Publications · an independent studio<br>
+      Questions? <a href="mailto:publicationsholiday@gmail.com">publicationsholiday@gmail.com</a>
+    </p>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var el = document.getElementById('cipher'), note = document.getElementById('note');
+  if (!el) return;
+  var word = el.dataset.word || el.textContent.trim();
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  el.textContent = '';
+  var spans = [];
+  for (var i = 0; i < word.length; i++) {
+    if (word[i] === ' ') {
+      var gap = document.createElement('span');
+      gap.className = 'sp'; gap.setAttribute('aria-hidden','true');
+      el.appendChild(gap); spans.push(null); continue;
+    }
+    var s = document.createElement('span');
+    s.className = 'ch'; s.setAttribute('aria-hidden','true');
+    s.textContent = reduce ? word[i] : letters[Math.floor(Math.random()*26)];
+    if (!reduce) s.classList.add('scrambling');
+    el.appendChild(s); spans.push(s);
+  }
+
+  var sr = document.createElement('span');
+  sr.textContent = word;
+  sr.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;';
+  el.appendChild(sr);
+
+  if (reduce) { if (note) note.classList.add('done'); return; }
+
+  var total = 0, settled = 0;
+  spans.forEach(function (s) { if (s) total++; });
+  spans.forEach(function (s, i) {
+    if (!s) return;
+    var target = word[i];
+    var spin = setInterval(function () { s.textContent = letters[Math.floor(Math.random()*26)]; }, 55);
+    setTimeout(function () {
+      clearInterval(spin);
+      s.textContent = target; s.classList.remove('scrambling');
+      settled++;
+      if (settled === total && note) {
+        note.textContent = 'Decrypted';
+        setTimeout(function(){ note.classList.add('done'); }, 700);
+      }
+    }, 360 + i * 62 + Math.random() * 100);
+  });
+})();
+</script>
+</body>
+</html>
