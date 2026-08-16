@@ -99,11 +99,10 @@
   .app:focus-visible{box-shadow:0 0 0 3px var(--coral),var(--shadow-hover)}
   .app.flagship{grid-column:auto}
 
-  .app-figure{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background:var(--cream-2)}
+  .app-figure{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--cream-2);display:flex;align-items:center;justify-content:center}
   .app.flagship .app-figure{aspect-ratio:16/10}
-  .app-figure img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;
-    transition:transform .5s cubic-bezier(.2,.7,.3,1)}
-  .app:hover .app-figure img{transform:scale(1.05)}
+  .app-figure img{max-width:100%;max-height:100%;width:auto;height:100%;object-fit:contain;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+  .app:hover .app-figure img{transform:scale(1.03)}
 
   .tag{
     position:absolute;top:.9rem;left:.9rem;z-index:2;
@@ -191,6 +190,13 @@
   .app.c-travel{border-top-color:#2E9E9E}
   .app.c-daily{border-top-color:var(--grape)}
   .app.c-hutch{border-top-color:#B8862B}
+
+
+  /* letterbox margins tinted per brand so 'contain' looks intentional */
+  .app.c-cook   .app-figure{background:#FFE9DC}
+  .app.c-travel .app-figure{background:#DBF0F0}
+  .app.c-daily  .app-figure{background:#EFE7FB}
+  .app.c-hutch  .app-figure{background:#F3E9D2}
 
 </style>
 </head>
