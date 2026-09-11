@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Holiday Publications — Apps &amp; Books for Everyday Life</title>
 <meta name="description" content="Holiday Publications is a small independent studio making feel-good apps and books — recipes, travel planning, daily readings, detective puzzles and puzzle books on Amazon.">
-<link rel="canonical" href="https://publicationsholiday-design.github.io/">
+<link rel="canonical" href="https://planmytravelapp.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Holiday Publications — Apps &amp; Books for Everyday Life">
@@ -212,10 +212,41 @@
   .shelf.b-puzzle  .shelf-figure{background:#12161c}
   .shelf-figure .stamp{position:absolute;top:.85rem;right:.85rem;z-index:2}
 
+
+  /* hero promo carousel */
+  .promo-hero{max-width:900px;margin:0 auto 8px;position:relative;border-radius:20px;overflow:hidden;box-shadow:0 18px 50px rgba(26,43,60,.20)}
+  .promo-hero .slide{width:100%;display:block;opacity:0;position:absolute;top:0;left:0;transition:opacity 1s ease;transform:scale(1.02)}
+  .promo-hero .slide.active{opacity:1;position:relative;animation:kenburns 6s ease-in-out}
+  @keyframes kenburns{0%{transform:scale(1.06)}100%{transform:scale(1)}}
+  .promo-cta{position:absolute;left:0;right:0;bottom:0;padding:20px;text-align:center;background:linear-gradient(transparent,rgba(10,20,30,.72));display:flex;flex-direction:column;align-items:center;gap:10px}
+  .promo-cta .pc-line{color:#fff;font-weight:800;font-size:clamp(15px,2.4vw,22px);text-shadow:0 2px 10px rgba(0,0,0,.5);letter-spacing:.01em}
+  .promo-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .promo-btns a{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#14304a;text-decoration:none;font-weight:800;font-size:13px;padding:10px 18px;border-radius:30px;box-shadow:0 6px 16px rgba(0,0,0,.25);transition:transform .15s}
+  .promo-btns a:hover{transform:translateY(-2px)}
+  .promo-btns a.alt{background:#E8862B;color:#fff}
+  .promo-dots{text-align:center;margin:12px 0 4px}
+  .promo-dots span{display:inline-block;width:9px;height:9px;border-radius:50%;background:rgba(26,122,110,.3);margin:0 4px;cursor:pointer;transition:background .3s,width .3s}
+  .promo-dots span.on{background:#1A7A6E;width:22px;border-radius:5px}
+  @media(max-width:600px){.promo-cta{padding:14px}}
 </style>
 </head>
 <body>
 <main class="sheet">
+
+  <div class="promo-hero" id="promoHero">
+    <img class="slide active" src="promo-1.png" alt="Plan My Travel - explore the world, plan perfectly">
+    <img class="slide" src="promo-2.png" alt="Plan My Travel - dream destinations and smart itineraries">
+    <img class="slide" src="promo-3.png" alt="Plan My Travel - plan smarter, travel better">
+    <div class="promo-cta">
+      <div class="pc-line" id="pcLine">Plan any trip in seconds - 180+ cities worldwide</div>
+      <div class="promo-btns">
+        <a href="https://apps.apple.com/us/app/plan-my-travel-itinerary/id6775488087" target="_blank" rel="noopener">&#63743; App Store</a>
+        <a class="alt" href="https://play.google.com/store/apps/details?id=game.planmytravel.plan_my_travel" target="_blank" rel="noopener">&#9654; Google Play</a>
+      </div>
+    </div>
+  </div>
+  <div class="promo-dots" id="promoDots"><span class="on"></span><span></span><span></span></div>
+
 
   <header>
     <span class="eyebrow">An independent studio</span>
@@ -354,5 +385,28 @@
 </footer>
 
 </main>
+
+<script>
+(function(){
+  var slides=document.querySelectorAll('#promoHero .slide');
+  var dots=document.querySelectorAll('#promoDots span');
+  var line=document.getElementById('pcLine');
+  var lines=[
+    "Plan any trip in seconds - 180+ cities worldwide",
+    "Day-by-day itineraries for every budget",
+    "Where to stay, eat & explore - all planned for you"
+  ];
+  if(!slides.length) return;
+  var i=0;
+  function show(n){
+    slides.forEach(function(sl,idx){ sl.classList.toggle('active', idx===n); });
+    dots.forEach(function(d,idx){ d.classList.toggle('on', idx===n); });
+    if(line) line.textContent = lines[n] || lines[0];
+    i=n;
+  }
+  dots.forEach(function(d,idx){ d.addEventListener('click', function(){ show(idx); }); });
+  setInterval(function(){ show((i+1)%slides.length); }, 4000);
+})();
+</script>
 </body>
 </html>
